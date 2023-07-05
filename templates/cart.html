@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="cart.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Document</title>
+
+    <style>
+
+/* .icon-shape {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    vertical-align: middle;
+} */
+
+.icon-sm {
+    width: 2rem;
+    height: 2rem;
+    
+}
+
+
+    
+    </style>
+</head>
+<body>
+  <section class="h-100 h-custom" style="background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTEDo6WYLVN-57_JVq_FXraFB6tyR2YCkhvtAAsCPcv8vX4Uqz1Trvg84SgshFLzm9zhV4&usqp=CAU);background-repeat: no-repeat; background-position: center; background-size: cover;background-attachment: fixed;">
+    <div class="container py-5 h-100">
+      {% if cart_products %}
+      {% for cart_prod in cart_products %}
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-12">
+          <div class="card card-registration card-registration-2" style="border-radius: 15px;">
+            <div class="card-body p-0">
+              <div class="row g-0">
+                <div class="col-lg-8">
+                  <div class="p-5">
+                    <div class="d-flex justify-content-between align-items-center mb-5">
+                      <h1 class="fw-bold mb-0 text-black">Shopping Cart</h1>
+                      <h6 class="mb-0 text-muted">3 items</h6>
+                    </div>
+                 
+
+                    <hr class="my-4">
+                    
+                    <div class="row mb-4 d-flex justify-content-between align-items-center">
+                      <div class="col-md-3 col-md-3 col-xl-3">
+                        <h5 class="text-muted ">Product</h5>
+                      </div>
+                      <div class="col-md-3 col-md-3 col-xl-3">
+                        <h5 class="text-muted ">Price</h5>
+                      </div>
+                      <div class="col-md-3 col-md-3 col-xl-3">
+                        <h5 class="text-muted text-uppercase"> Quantity</h5>
+                      </div>
+                      <div class="col-md-3 col-md-3 col-xl-3">
+                        <h5 class="text-muted text-uppercase">Total Price</h5>
+                      </div>
+                  
+                    </div>
+  
+                  
+                    <div class="row mb-4 d-flex justify-content-between align-items-center">
+                      <div class="col-md-2 col-lg-2 col-xl-2">
+                        <img
+                          src="{{cart_prod.product.product_image.url}}"
+                          class="img-fluid rounded-3" alt="Cotton T-shirt">
+                          <h6 class="text-muted">{{cart_prod.product.title}}</h6>
+                      </div>
+                      <div class="col-md-3 col-lg-3 col-xl-3">
+                        <!-- <h6 class="text-muted">{{cart_prod.product.title}}</h6> -->
+                        
+                        <br>
+                        <h6 class="mb-0">{{cart_prod.product.price}}</h6>
+                      </div>
+
+                      <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
+                        
+
+
+                                                
+                      <a href="{% url 'minuscart' cart_prod.id %}">  <input type="button" value="-" class="button-minus border rounded-circle  icon-shape icon-sm mx-1 " data-field="quantity"></a>
+
+
+
+                      <input type="text" step="1" max="10" value="{{cart_prod.quantity}}" name="quantity" class="quantity-field border-0 text-center w-25 ">  
+
+                    <a  href="{% url 'pluscart' cart_prod.id %}"> <input type="button" value="+" class="button-plus border rounded-circle icon-shape icon-sm " data-field="quantity"> </a> 
+                        
+                   
+
+      
+                        
+                        
+                      </div>
+
+                      <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                         
+
+
+
+
+                        <!-- <a href="{% url 'minuscart' cart_prod.id %}"> <input type="button" value="-" class="button-minus border rounded-circle  icon-shape icon-sm mx-1  " data-field="quantity"> </a>
+
+
+
+
+                        <input type="number" step="1" max="10" value="{{cart_prod.quantity}}" name="quantity" class="quantity-field border-0 text-center w-25">
+
+
+                        
+                        <a href="{% url 'pluscart' cart_prod.id %}"><input type="button" value="+" class="button-plus border rounded-circle icon-shape icon-sm " data-field="quantity"> </a> 
+
+                      -->
+                  
+
+
+                      <h6 class="mb-0">{{cart_prod.total_price}}</h6>
+                       
+                        
+                       
+  
+                   
+                      </div>
+                   
+                     
+
+                      
+                    </div>
+
+                    <div class="d-flex justify-content-end ">
+                      
+                      <a href="{% url 'deletecart' cart_prod.id %}"><button type="button" class="btn btn-dark btn-block btn-lg"><span>Delete</span></button></a>
+             
+                     </div>
+                  
+
+  
+                    <hr class="my-4">
+  
+                 
+  
+                    
+  
+                    <div class="pt-5">
+                      <h6 class="mb-0"><a href="#!" class="text-body"><i
+                            class="fas fa-long-arrow-alt-left me-2"></i>Back to shop</a></h6>
+                            
+                    </div>
+                    
+                  </div>
+                </div>
+                <div class="col-lg-4 bg-grey">
+                  <div class="p-5">
+                    <h3 class="fw-bold mb-5 mt-2 pt-1">Summary</h3>
+                    <hr class="my-4">
+  
+                    <div class="d-flex justify-content-between mb-4">
+                      <h5 class="text-uppercase">price</h5>
+                      <h5>{{amount}}</h5>
+                    </div>
+  
+
+                    <div class="d-flex justify-content-between mb-4">
+                    <h5 class="text-uppercase mb-3">Shipping</h5>
+  
+                 
+                      
+                      <h5>{{shipping_amount}}</h5>
+                      
+                    
+                    </div>
+  
+                    <hr class="my-4">
+  
+                   <div class="d-flex justify-content-between mb-5">
+                      <h5 class="text-uppercase">Total price</h5>
+                      <h5>{{total_amount}}</h5>
+                    </div>
+  
+                    <button type="button" class="btn btn-dark btn-block btn-lg"
+                      data-mdb-ripple-color="dark">Register</button>
+  
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      {% endif %}
+    </div>
+  </section>
+
+
+  <script>
+    function incrementValue(e) {
+        e.preventDefault();
+        var fieldName = $(e.target).data('field');
+        var parent = $(e.target).closest('div');
+        var currentVal = parseInt(parent.find('input[name=' + fieldName + ']').val(), 10);
+
+        if (!isNaN(currentVal)) {
+            parent.find('input[name=' + fieldName + ']').val(currentVal + 1);
+        } else {
+            parent.find('input[name=' + fieldName + ']').val(0);
+        }
+    }
+
+    function decrementValue(e) {
+        e.preventDefault();
+        var fieldName = $(e.target).data('field');
+        var parent = $(e.target).closest('div');
+        var currentVal = parseInt(parent.find('input[name=' + fieldName + ']').val(), 10);
+
+        if (!isNaN(currentVal) && currentVal > 0) {
+            parent.find('input[name=' + fieldName + ']').val(currentVal - 1);
+        } else {
+            parent.find('input[name=' + fieldName + ']').val(0);
+        }
+    }
+
+    $('.input-group').on('click', '.button-plus', function(e) {
+        incrementValue(e);
+    });
+
+    $('.input-group').on('click', '.button-minus', function(e) {
+        decrementValue(e);
+    });
+  </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>
